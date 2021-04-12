@@ -1,11 +1,11 @@
-.popular-movies{
+.movies-div{
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     padding: 15px;
     justify-content: center;
 }
-.popular-header{
+.movies-header{
     text-align: center;
     padding-top: 20px;
     color: orange;
