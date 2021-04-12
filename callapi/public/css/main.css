@@ -19,10 +19,57 @@
     padding-bottom: 4px;
 }
 
-.info{
+.movie-info {
     max-width: fit-content;
 }
 
-.ganre{
+
+.genre{
     font-size: small;
+    max-width: fit-content;
 }
+
+.show-movie{
+    display: flex;
+    padding: 15px;
+    max-width: 100%;
+    
+}
+@media (max-width: 576px){
+    .show-movie{
+        flex-direction: column;
+    }
+}
+
+
+.show-title{
+    font-weight: bold;
+}
+
+.show-info{
+    padding: 15px;
+}
+.crew{
+    display: flex;
+}
+
+.trailer{
+    background-color: orange;
+    max-width: 150px;
+    padding: 10px;
+    text-align: center;
+}
+.trailer a{
+    color: rgb(15, 15, 15);
+    font-weight: 900;
+}
+
+.cast{
+    padding: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    
+}
+
