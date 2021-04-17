@@ -1,55 +1,79 @@
 @extends('layouts.mainLayout')
-
 @section('content')
-
-    <div class="container-show">
-        <div class="show-movie">
-            <img src="{{'https://image.tmdb.org/t/p/w300/'.$movie['poster_path']}}"  alt="poster">
-            <div class="show-info">
-                <h2 class="show-title">{{$movie['title']}}</h2>
-                <span class="star"> <img src="{{asset('/img/star.svg.png')}}" alt="image"></span>
-                <span>{{$movie['vote_average']  *10 .'%'}}</span>
-                <span>|</span>
-                <span>{{ \Carbon\Carbon::parse($movie['release_date'])->format('M d,Y')}}</span>
-                <span>|</span>
-                <span>
-                    @foreach($movie['genres'] as $genre)
-                        {{ $genre['name']}}@if (!$loop->last), @endif
-                    @endforeach
-                </span>
-                <br><br>
-                <p>{{$movie['overview']}}</p>
-                <br><br>
-                <h5 style="font-weight:bold">Featured crew</h5>
-                <div class="crew">
-                    @foreach($movie['credits']['crew'] as $crew)
-                        @if($loop->index < 2)
-                            <div>
-                                <div style="padding-right:15px">{{$crew['name']}}</div>
-                                <div style="color:gray; padding-right:5px">{{$crew['job']}}</div>
-                            </div>
-                        @endif
-                    @endforeach
-                </div>
-                <br><br>
-                <div class="trailer">
-                    <a href="https://youtube.com/watch?v={{ $movie['videos']['results'][0]['key'] }}">Watch trailer</a>
+<!--Movie card-->
+<div class="container-fluid m-0">
+    <div class="card  movie-card  bg-dark text-white mt-2">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="{{'https://image.tmdb.org/t/p/w500/'.$movie['poster_path']}}" class="card-img" alt="poster"  >
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{{$movie['title']}}</h5>
+                    <div class="card-text text-muted">
+                        <small>
+                            <span> <img src="{{asset('/img/star.svg.png')}}" class="star" alt="star"></span>
+                            <span>{{$movie['vote_average']  *10 .'%'}}</span>
+                            <span>|</span>
+                            <span>{{ \Carbon\Carbon::parse($movie['release_date'])->format('M d,Y')}}</span>
+                            <span>|</span>
+                            <span>
+                                @foreach($movie['genres'] as $genre)
+                                    {{ $genre['name']}}@if (!$loop->last), @endif
+                                @endforeach
+                            </span>
+                        </small>
+                    </div>
+                    <div class="mt-4">{{$movie['overview']}}</div>
+                    <div class="mt-2">
+                        <small>Featured crew :</small>
+                            @foreach($movie['credits']['crew'] as $crew)
+                                @if($loop->index < 2)
+                                        <div>{{$crew['name']}}</div>
+                                        <div class="text-muted">{{$crew['job']}}</div>
+                                @endif
+                            @endforeach
+                    </div>
+                    <a href="https://youtube.com/watch?v={{ $movie['videos']['results'][0]['key'] }}" class="btn">Watch trailer</a>
                 </div>
             </div>
         </div>
-        <hr style="background-color:gray">
-        <div class="cast">
-            @foreach($movie['credits']['cast'] as $cast)
-                @if($loop->index < 4)
-                    <div>
-                    <a href=""><img src="{{'https://image.tmdb.org/t/p/w200/'.$cast['profile_path']}}"  alt="profile"></a>
-                    <div><a href="">{{$cast['name']}}</a></div>
-                    <div style="color:gray; max-width: fit-content;">{{$cast['character']}}</div>
-                    </div>
-                    
-                @endif
-            @endforeach
+    </div>   
+</div>
+<!--end of movie card-->
+
+<!--Actors-->
+<div class="container-fluid m-0 ">
+    <div class=" movies-header">actors</div>
+    <div class="actors-row">
+    @foreach($movie['credits']['cast'] as $cast)
+        @if($loop->index < 6)
+        <div class="actors-column">
+            <img src="{{'https://image.tmdb.org/t/p/w300/'.$cast['profile_path']}}"  alt="profile">
+            <div class="actors-info">
+                {{$cast['name']}}
+                <p class="text-muted"> {{$cast['character']}}</p>
+            </div>
         </div>
+        @endif
+        @endforeach
     </div>
+</div>
+<!--end of Actors-->
+
+<!--gallery-->
+<div class="container-fluid m-0">
+    <div class=" movies-header">photos</div>
+    <div class="row">
+    @foreach($movie['images']['backdrops'] as $image)
+    @if($loop->index < 8)
+        <div class="column">
+            <img src="{{'https://image.tmdb.org/t/p/w500/'.$image['file_path']}}" class="gallery" alt="...">
+        </div>
+        @endif
+        @endforeach
+    </div>
+</div>
+<!--end of gallery -->
 
 @endsection

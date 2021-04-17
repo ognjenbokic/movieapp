@@ -573,8 +573,6 @@ pre code {
 .row {
   display: flex;
   flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
   max-width: 100%;
   justify-content: center;
 }
@@ -3988,7 +3986,7 @@ input[type=button].btn-block {
   font-family:"Poppins",  sans-serif;
   line-height: inherit;
   white-space: nowrap;
-  margin-left: 20px;
+  
 }
 .navbar-brand:hover, .navbar-brand:focus {
   text-decoration: none;
@@ -4463,6 +4461,7 @@ input[type=button].btn-block {
 .card-img-bottom {
   flex-shrink: 0;
   width: 100%;
+  
 }
 
 .card-img,
