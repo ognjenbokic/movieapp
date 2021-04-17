@@ -1,7 +1,7 @@
 @extends('layouts.mainLayout')
 @section('content')
 <!--Movie card-->
-<div class="container-fluid m-0">
+<div class="container-fluid m-0 pt-4">
     <div class="card  movie-card  bg-dark text-white mt-2">
         <div class="row no-gutters">
             <div class="col-md-4">
@@ -25,12 +25,11 @@
                         </small>
                     </div>
                     <div class="mt-4">{{$movie['overview']}}</div>
-                    <div class="mt-2">
-                        <small>Featured crew :</small>
+                    <div class="mt-4">
                             @foreach($movie['credits']['crew'] as $crew)
                                 @if($loop->index < 2)
-                                        <div>{{$crew['name']}}</div>
                                         <div class="text-muted">{{$crew['job']}}</div>
+                                        <div>{{$crew['name']}}</div>
                                 @endif
                             @endforeach
                     </div>
@@ -49,7 +48,7 @@
     @foreach($movie['credits']['cast'] as $cast)
         @if($loop->index < 6)
         <div class="actors-column">
-            <img src="{{'https://image.tmdb.org/t/p/w300/'.$cast['profile_path']}}"  alt="profile">
+            <img src="{{'https://image.tmdb.org/t/p/w500/'.$cast['profile_path']}}"  alt="profile">
             <div class="actors-info">
                 {{$cast['name']}}
                 <p class="text-muted"> {{$cast['character']}}</p>

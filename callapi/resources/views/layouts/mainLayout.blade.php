@@ -10,9 +10,9 @@
 </head>
 <body>
     @include('partial.navbar')
-  
-    @yield('content')
-
+    <div class="container pb-4">
+        @yield('content')
+    </div>
     @include('partial.footer')
     <script src="{{asset('js/app.js')}}"></script>
 </body>    
